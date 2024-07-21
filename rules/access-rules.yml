@@ -1,0 +1,16 @@
+rules:
+  - id: allow-localhost
+    description: Allow localhost access
+    match:
+      url:
+        path: "/api/v3/*"
+    authenticators:
+      - handler: noop
+    authorizer:
+      handler: allow
+    upstream:
+      url: "http://localhost:4455"
+    allowed:
+      subjects:
+        - "alice"
+        - "bob"
